@@ -1,0 +1,66 @@
+Algorithm to read the ADCIRC Grid input file
+
+Link for the notation full forms: http://adcirc.org/home/documentation/users-manual-v50/parameter-definitions/#AGRID
+
+ADCIRC Grid and Boundary Information File (fort.14)
+
+This file is required to run the ADCIRC model.
+
+The basic file structure is shown below. Each line of input data is represented by a line containing the input variable name(s) in bold face type. Blank lines are only to enhance readability. Loops indicate multiple lines of input. Conditional input is indicated by an if clause following the variable name(s). Definitions of each variable are provided via hot links.
+
+AGRID
+
+NE, NP
+
+for k=1 to NP
+
+JN, X(JN), Y(JN), DP(JN)
+
+end k loop
+
+for k=1 to NE
+
+JE, NHY, NM(JE,1),NM(JE,2), NM(JE,3)
+
+end k loop
+
+NOPE
+
+NETA
+
+for k=1 to NOPE
+
+NVDLL(k), IBTYPEE(k)
+
+for j=1 to NVDLL(k)
+
+NBDV(k,j)
+
+end j loop
+
+end k loop
+
+NBOU
+
+NVEL
+
+for k=1 to NBOU
+
+NVELL(k), IBTYPE(k)
+
+for j=1,NVELL(k)
+
+NBVV(k,j) ? include this line only if IBTYPE(k) = 0, 1, 2, 10, 11, 12, 20, 21, 22, 30
+
+NBVV(k,j), BARLANHT(k,j), BARLANCFSP(k,j) include this line only if IBTYPE(k) = 3, 13, 23
+
+NBVV(k,j), IBCONN(k,j), BARINHT(k,j), BARINCFSB(k,j), BARINCFSP(k,j) include this line only if IBTYPE(k) = 4, 24
+
+NBVV(k,j), IBCONN(k,j), BARINHT(k,j), BARINCFSB(k,j), BARINCFSP(k,j), PIPEHT(k,j), PIPECOEF(k,j), PIPEDIAM(k,j), include this line only if IBTYPE(k) = 5, 25
+
+end j loop
+
+end k loop
+
+
+
